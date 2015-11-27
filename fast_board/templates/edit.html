@@ -1,0 +1,30 @@
+{% extends 'blog_layout.html' %}
+
+{% block content %}
+
+{% if post %}
+<h3>글 수정하기 : {{ post.title }}</h3>
+{% endif %}
+
+<form method="POST" action="">
+{% csrf_token %}
+<p>
+	<select name='category'>
+	{% for category in categories %}
+		<option value="{{ category.pk }}">{{category.name}}</option>
+	{% endfor %}
+	</select>
+</p>
+<p>
+	<label>글 제목</label><input type="text" name="title" value="{{ post.title }}"/>
+</p>
+<p>
+	<input type="hidden" name="pk" value="{{ post.pk }}" />
+	<textarea name="content">{{ post.content }}</textarea>
+</p>
+<p>
+	<input type="submit" value="저장" class="btn btn-primary btn-lg" />
+</p>
+</form>
+
+{% endblock %}

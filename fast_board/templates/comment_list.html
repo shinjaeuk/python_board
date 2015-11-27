@@ -1,0 +1,20 @@
+<hr>
+댓글들
+<hr>
+{% for comment in comments %}
+	<form method="POST" action="/blog/comment/{{ comment.id }}/delete/">
+	{% csrf_token %}
+	<input type="hidden" name="post_id" value="{{ post.pk }}" />
+	<input type="hidden" name="comment_id" value="{{ comment.id }}" />
+		<h4>{{ comment.content }} - <button>삭제</button></br></h4> 
+	</form>
+{% endfor %}
+<hr>
+<form method="POST" action="/blog/comment/create/">
+{% csrf_token %}
+<input type="hidden" name="pk" value="{{ post.pk }}" />
+	댓글 입력<br>
+	<textarea name='comment_content'></textarea><br>
+	<input type="submit" value='댓글 추가'></input><br>
+</form>
+<hr>

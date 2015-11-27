@@ -1,0 +1,13 @@
+{% load bootstrap3 %}<!DOCTYPE html>
+<html lang=ko>
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block page_title %}블로그입니다.{% endblock %}</title>
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+		{% bootstrap_css %}
+		{% bootstrap_javascript %}
+	</head>
+	<body>
+		{% block content %}아무내용도 없습니다. {% endblock %}
+	</body>
+</html>

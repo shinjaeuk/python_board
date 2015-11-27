@@ -1,0 +1,28 @@
+{% extends 'blog_layout.html'%}
+{% load bootstrap3 %}
+
+{% block content %}
+
+	{% for post in posts %}
+
+	<div class="post_container">			
+		<h3 class="post_title">
+			<a href="{% url 'myblog:view' pk=post.pk %}">제목: {{ post.title }}</a>
+		</h3>
+		<div class="post_content">내용: {{ post.content }}</div>
+	</div>
+	<div>
+		<p>
+			<div class="post_content">작성시간 : {{ post.created_at }}</div>
+		</p>
+	</div>
+
+	{% empty %}
+	
+		<p>글이 하나도 없음. </p>
+
+	{% endfor %}
+
+	{% bootstrap_pagination posts %}
+
+{% endblock %}

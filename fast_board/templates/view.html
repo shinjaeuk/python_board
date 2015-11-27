@@ -1,0 +1,15 @@
+{% extends 'blog_layout.html' %}
+
+{% block page_title %} 글 제못 : {{ post.title}} {% endblock %}
+
+{% block content %}
+
+	{% if post %}
+		<p>제목 : {{ post.title }}</p>
+		<p>내용 : {{ post.content }}</p>
+	{% endif %}
+{% include 'comment_list.html' %}
+
+<a class="btn btn-default" href="{% url 'myblog:list'%}" role="button">글 목록</a>
+<a class="btn btn-default" href="{% url 'myblog:edit' pk=post.pk %}" role="button">글 수정</a>
+{% endblock %}
