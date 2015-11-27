@@ -29,7 +29,7 @@ def create_post(request):
 
 def view_post(request, pk):
     # 글을 가져와서 post 에 담으세요.
-    post = None
+    post = get_object_or_404(Post, pk=pk)
 
     return render(request, 'view_post.html', {
         'post': post,
