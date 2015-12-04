@@ -2,29 +2,36 @@
 
 {% block content %}
 
+<br>
+<div class="container">
+	
+	<form method="POST" action="">{% csrf_token %}
+
+	<div class="form-group">
+	  <label for="sel1">카테고리: </label>
+		  	<select name='category' class="form-control">
+				{% for category in categories %}
+					<option value="{{ category.pk }}">{{category.name}}</option>
+				{% endfor %}
+			</select>
+	</div>
+		
+
 {% if post %}
-<h3>글 수정하기 : {{ post.title }}</h3>
+		<h5>제목</h5>
+		<input name="title" type="text" class="form-control" value="{{ post.title }}">
+
 {% endif %}
+		<h5>본문</h5>
+		<textarea name="content" class="form-control" rows="5">{{ post.content }}</textarea>
+		<input type="hidden" name="pk" value="{{ post.pk }}" />
+		<br>
+		<div align="right">
+			<button class="btn btn-default btn-md" href="{% url 'myblog:list'%}">뒤로</button>
+			<button type="submit" class="btn btn-default btn-md">저장</button>
+		</div>
 
-<form method="POST" action="">
-{% csrf_token %}
-<p>
-	<select name='category'>
-	{% for category in categories %}
-		<option value="{{ category.pk }}">{{category.name}}</option>
-	{% endfor %}
-	</select>
-</p>
-<p>
-	<label>글 제목</label><input type="text" name="title" value="{{ post.title }}"/>
-</p>
-<p>
-	<input type="hidden" name="pk" value="{{ post.pk }}" />
-	<textarea name="content">{{ post.content }}</textarea>
-</p>
-<p>
-	<input type="submit" value="저장" class="btn btn-primary btn-lg" />
-</p>
+		
 </form>
-
+</div>
 {% endblock %}
