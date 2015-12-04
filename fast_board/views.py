@@ -96,7 +96,7 @@ def edit_post(request, pk):
 	else:
 		pass
 
-def delet_post(request, pk):
+def delet_comment(request, pk):
 
 	post_id = request.POST['post_id']
 
@@ -108,7 +108,7 @@ def delet_post(request, pk):
 	
 	return redirect(post);
 
-def create_post(request):
+def create_comment(request):
 
 	comment_content = request.POST['comment_content']
 	comment = Comment()
